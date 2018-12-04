@@ -13,8 +13,7 @@ z=r*sin(theta)*sin(phi)
 
 
 public class Camera { 
-  
-
+ 
  float radius = 100;
   float phi = map(mouseX,0,width-1,0,360); 
  float theta = map(mouseY,0,height-1,1,179); 

@@ -35,7 +35,11 @@ Animation spherePos; // Create manually
 ShapeInterpolator sphereForward = new ShapeInterpolator();
 PositionInterpolator spherePosition = new PositionInterpolator();
 
+
+
+
 // TODO: Create animations for interpolators
+PositionInterpolator cubePos = new PositionInterpolator(); 
 ArrayList<PositionInterpolator> cubes = new ArrayList<PositionInterpolator>();
 
 void setup()
@@ -60,8 +64,55 @@ void setup()
   // with a time value update. Each is 0.1 seconds
   // ahead of the previous one
   
+
+  Animation cubeAnim = new Animation(); 
+  
+  
+  float time;  
+   KeyFrame KeyFrame = new KeyFrame(); 
+   ArrayList<PVector> points = new ArrayList<PVector>();
+   PVector p = new PVector(-100,0,0); 
+   // The points have been added to the keyframe array 
+   KeyFrame.points.add(p); 
+   // We added the time of the keyframe! 
+   KeyFrame.time = 0; 
+   cubeAnim.keyFrames.add(0,KeyFrame);
+//   cubePos.Update(KeyFrame.time); 
+   
+  // Second position KeyFrame[1]
+  KeyFrame = new KeyFrame(); 
+  points = new ArrayList<PVector>();
+  p = new PVector(-100,0,100); 
+  KeyFrame.points.add(p);
+  KeyFrame.time = 2; 
+  cubeAnim.keyFrames.add(1,KeyFrame); 
+  //cubePos.Update(playbackSpeed); 
+  
+  // Third position KeyFrame[2]
+  KeyFrame = new KeyFrame(); 
+  points = new ArrayList<PVector>();
+  p = new PVector(-100,0,0); 
+  KeyFrame.points.add(p); 
+  KeyFrame.time = 4; 
+  cubeAnim.keyFrames.add(2,KeyFrame); 
+  //cubePos.Update(KeyFrame.time); 
+  
+  // Fourth position KeyFrame[3]
+  KeyFrame = new KeyFrame();  //<>//
+  points = new ArrayList<PVector>();
+  p = new PVector(-100,0,-100); 
+  KeyFrame.points.add(p); 
+  KeyFrame.time = 6; 
+ // cubePos.Update(KeyFrame.time); 
+  cubeAnim.keyFrames.add(3,KeyFrame);  //<>//
+  
+  cubePos.SetAnimation(cubeAnim); 
+  cubePos.Update(0);  //<>//
+  
+  
+  
   /*====== Create Animations For Spheroid ======*/
-  //Animation spherePos = new Animation();
+  Animation spherePos = new Animation();
   // Create and set keyframes
   //spherePosition.SetAnimation(spherePos);
   
@@ -121,93 +172,86 @@ void draw()
   
   /*====== TODO: Update and draw cubes ======*/
   // For each interpolator, update/draw
-  
-  PShape cube = createShape(); 
+   cubes(); 
+   
+} 
+
+PShape cubes () { 
+   float playbackSpeed = 0.005f;
+  PShape cubeShape = createShape(); 
   pushMatrix(); 
  // translate(-100,0,-100); 
-  cube.scale(5,5,5); 
-  cube.beginShape(TRIANGLE); 
-  cube.translate(-100,0,-100); 
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY,sZ); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX,sY-rad,sZ); 
+  cubeShape.scale(5,5,5); 
+  cubeShape.beginShape(TRIANGLE); 
+  cubeShape.translate(-100,0,0); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY,sZ); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX,sY-rad,sZ); 
   
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY-rad,sZ); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX+rad,sY-rad,sZ); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY-rad,sZ); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ); 
   
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY-rad,sZ); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  cube.vertex(sX+rad,sY-rad,sZ); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY-rad,sZ); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ); 
   
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  cube.vertex(sX+rad,sY-rad,sZ); 
-  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ-rad); 
   
-  cube.fill(#FF0000); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX+rad,sY-rad,sZ); 
-  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ-rad); 
    
   
-  cube.fill(#FF0000); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX+rad,sY,sZ-rad); 
-  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX+rad,sY,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ-rad); 
   
-  cube.fill(#FF0000);
-  cube.vertex(sX,sY,sZ); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX,sY,sZ-rad); 
-  
-
-  cube.fill(#FF0000); 
-  cube.vertex(sX+rad,sY,sZ); 
-  cube.vertex(sX,sY,sZ-rad); 
-  cube.vertex(sX+rad,sY,sZ-rad); 
-  
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY,sZ-rad); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  cube.vertex(sX+rad,sY,sZ-rad); 
-  
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  cube.vertex(sX+rad,sY-rad,sZ-rad); 
-  cube.vertex(sX+rad,sY,sZ-rad); 
-  
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY,sZ); 
-  cube.vertex(sX,sY-rad,sZ); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  
-  cube.fill(#FF0000); 
-  cube.vertex(sX,sY,sZ); 
-  cube.vertex(sX,sY,sZ-rad); 
-  cube.vertex(sX,sY-rad,sZ-rad); 
-  cube.endShape(TRIANGLE);
-  cube.setStroke(false); 
-  popMatrix(); 
-  shape(cube);
+  cubeShape.fill(#FF0000);
+  cubeShape.vertex(sX,sY,sZ); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX,sY,sZ-rad); 
   
 
-
-    KeyFrame keyframe = new KeyFrame(); 
-    ArrayList<PVector> points = new ArrayList<PVector>();
-    PVector p = new PVector(-100,0,0); 
-    points.add(p); 
-    
- 
-    
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX+rad,sY,sZ); 
+  cubeShape.vertex(sX,sY,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY,sZ-rad); 
   
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY,sZ-rad); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY,sZ-rad); 
   
-  //Animation animation = new Animation(); 
-  //animation.GetDuration(); 
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY-rad,sZ-rad); 
+  cubeShape.vertex(sX+rad,sY,sZ-rad); 
   
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY,sZ); 
+  cubeShape.vertex(sX,sY-rad,sZ); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  
+  cubeShape.fill(#FF0000); 
+  cubeShape.vertex(sX,sY,sZ); 
+  cubeShape.vertex(sX,sY,sZ-rad); 
+  cubeShape.vertex(sX,sY-rad,sZ-rad); 
+  cubeShape.endShape(TRIANGLE);
+  cubeShape.setStroke(false); 
+  shape(cubeShape);
+  cubePos.Update(playbackSpeed); 
+  popMatrix();
+  
+  return cubeShape; 
 }
 
 void mouseWheel(MouseEvent event)

@@ -19,5 +19,5 @@ class Animation
     return keyFrames.get(keyFrames.size()-1).time;
   }
   // This is the array of keyframes. 
-  ArrayList<KeyFrame> keyFrames = new ArrayList<KeyFrame>();
+  public ArrayList<KeyFrame> keyFrames = new ArrayList<KeyFrame>();
 }
