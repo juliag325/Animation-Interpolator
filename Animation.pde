@@ -8,6 +8,7 @@ class KeyFrame
   // be reused for either. An array of one is perfectly viable.
   // These are the vector positions 
   public ArrayList<PVector> points = new ArrayList<PVector>();
+  
 }
 
 class Animation

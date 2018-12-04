@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.*;
 
-/*Camera stuff
+
 float positionX, positionY, positionZ; 
 float rotation = 0; 
 float posX, posY, posZ; 
@@ -20,7 +20,7 @@ float rad = 1;
 PVector target; 
 int numSides = 20; 
 int value = 0; 
-*/ 
+
 
 Camera camera = new Camera(); 
 /*========== Monsters ==========*/
@@ -118,8 +118,96 @@ void draw()
   shape(sphereForward.currentShape);
   popMatrix();
   */ 
+  
   /*====== TODO: Update and draw cubes ======*/
   // For each interpolator, update/draw
+  
+  PShape cube = createShape(); 
+  pushMatrix(); 
+ // translate(-100,0,-100); 
+  cube.scale(5,5,5); 
+  cube.beginShape(TRIANGLE); 
+  cube.translate(-100,0,-100); 
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY,sZ); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX,sY-rad,sZ); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY-rad,sZ); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX+rad,sY-rad,sZ); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY-rad,sZ); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  cube.vertex(sX+rad,sY-rad,sZ); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  cube.vertex(sX+rad,sY-rad,sZ); 
+  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX+rad,sY-rad,sZ); 
+  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+   
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX+rad,sY,sZ-rad); 
+  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  
+  cube.fill(#FF0000);
+  cube.vertex(sX,sY,sZ); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX,sY,sZ-rad); 
+  
+
+  cube.fill(#FF0000); 
+  cube.vertex(sX+rad,sY,sZ); 
+  cube.vertex(sX,sY,sZ-rad); 
+  cube.vertex(sX+rad,sY,sZ-rad); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY,sZ-rad); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  cube.vertex(sX+rad,sY,sZ-rad); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  cube.vertex(sX+rad,sY-rad,sZ-rad); 
+  cube.vertex(sX+rad,sY,sZ-rad); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY,sZ); 
+  cube.vertex(sX,sY-rad,sZ); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  
+  cube.fill(#FF0000); 
+  cube.vertex(sX,sY,sZ); 
+  cube.vertex(sX,sY,sZ-rad); 
+  cube.vertex(sX,sY-rad,sZ-rad); 
+  cube.endShape(TRIANGLE);
+  cube.setStroke(false); 
+  popMatrix(); 
+  shape(cube);
+  
+
+
+    KeyFrame keyframe = new KeyFrame(); 
+    ArrayList<PVector> points = new ArrayList<PVector>();
+    PVector p = new PVector(-100,0,0); 
+    points.add(p); 
+    
+ 
+    
+  
+  
+  //Animation animation = new Animation(); 
+  //animation.GetDuration(); 
+  
 }
 
 void mouseWheel(MouseEvent event)
@@ -158,24 +246,24 @@ void DrawGrid()
 {
   // TODO: Draw the grid
   // Dimensions: 200x200 (-100 to +100 on X and Z)
-  for (int i=-200; i< 201; i++) { 
+  for (int i=-100; i< 101; i++) { 
     stroke(255); 
-    line(i,0,200,i,0,-200); 
+    line(i,0,100,i,0,-100); 
     i+=10; 
   } 
    
-  for (int j=-200; j< 201; j++) { 
+  for (int j=-100; j< 101; j++) { 
     stroke(255); 
-    line(200,0,j,-200,0,j); 
+    line(100,0,j,-100,0,j); 
     j+=10; 
   } 
   stroke(255,0,0);
   strokeWeight(3); 
-  line(0,0,200,0,0,-200); 
+  line(0,0,100,0,0,-100); 
   
   stroke(0,0,255); 
   strokeWeight(3); 
-  line(200,0,0,-200,0,0); 
+  line(100,0,0,-100,0,0); 
   
   
 }
